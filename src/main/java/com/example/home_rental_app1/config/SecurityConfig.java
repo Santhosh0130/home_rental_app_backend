@@ -1,8 +1,5 @@
 package com.example.home_rental_app1.config;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,9 +65,8 @@ public class SecurityConfig {
         // orgins.add("http://localhost:5173");
         // orgins.add("http://192.168.197.81:5173");
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://192.168.197.81:5173");
-        configuration.addAllowedOrigin("http://localhost:5173");
-        // configuration.setAllowedOrigins(orgins);
+        // configuration.addAllowedOrigin("http://localhost:5173");
+        // // configuration.setAllowedOrigins(orgins);
         // configuration.addAllowedOrigin("*");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
