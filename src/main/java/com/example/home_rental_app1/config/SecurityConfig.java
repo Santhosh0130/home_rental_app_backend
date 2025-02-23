@@ -82,14 +82,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource configurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // config.setAllowedOrigins(List.of(
-        //     // "https://home-rental-app-frontend.onrender.com",
-        //     "https://homerentalappfrontend.onrender.com",
-        //     "https://home-rental-app-frontend.vercel.app"
-        // ));
-        config.setAllowedOriginPatterns(List.of("*"));
-        config.setAllowedMethods(List.of("*"));
-        config.setAllowedHeaders(List.of("*"));
+        // config.setAllowedOriginPatterns(List.of("*"));
+        config.setAllowedOrigins(List.of(
+            // "https://home-rental-app-frontend.onrender.com",
+            "https://homerentalappfrontend.onrender.com",
+            "https://home-rental-app-frontend.vercel.app"
+        ));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
