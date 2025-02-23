@@ -10,7 +10,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Use a lightweight JDK 21 image for running the app
-FROM eclipse-temurin:21-jdk
+FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
