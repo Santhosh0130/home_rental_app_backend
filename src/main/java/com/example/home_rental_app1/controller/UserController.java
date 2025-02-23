@@ -3,6 +3,7 @@ package com.example.home_rental_app1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -54,33 +55,33 @@ public class UserController {
         }
 
         // String token = jwtUtill.genarateToken(authentication.getName());
-        
+
         // ResponseCookie cookie = ResponseCookie.from("jwt", token)
-        //         .httpOnly(false)
-        //         .secure(true)
-        //         .path("/")
-        //         .maxAge(60 * 60 * 30)
-        //         .sameSite("None")
-        //         .build();
+        // .httpOnly(false)
+        // .secure(true)
+        // .path("/")
+        // .maxAge(60 * 60 * 30)
+        // .sameSite("None")
+        // .build();
 
         // return ResponseEntity.ok()
-        //         .header("Set-Cookie", cookie.toString())
-        //         .body("Login Successfully. Token : " + token + " " + cookie.toString());
+        // .header("Set-Cookie", cookie.toString())
+        // .body("Login Successfully. Token : " + token + " " + cookie.toString());
 
         String token = jwtUtill.generateToken(authentication.getName());
 
-    // Create secure cookie for the token
-    ResponseCookie cookie = ResponseCookie.from("jwt", token)
-            .httpOnly(true)  // ✅ Prevents JavaScript access (More Secure)
-            .secure(true)    // ✅ Ensures cookie is only sent over HTTPS
-            .sameSite("None") // ✅ Required for cross-origin requests
-            .path("/")       // ✅ Makes the cookie available for all endpoints
-            .maxAge(60 * 60 * 30) // ✅ Cookie expires in 30 hours
-            .build();
+        // Create secure cookie for the token
+        ResponseCookie cookie = ResponseCookie.from("jwt", token)
+                .httpOnly(true) // ✅ Prevents JavaScript access (More Secure)
+                .secure(true) // ✅ Ensures cookie is only sent over HTTPS
+                .sameSite("None") // ✅ Required for cross-origin requests
+                .path("/") // ✅ Makes the cookie available for all endpoints
+                .maxAge(60 * 60 * 30) // ✅ Cookie expires in 30 hours
+                .build();
 
-    return ResponseEntity.ok()
-            .header("Set-Cookie", cookie.toString()) // ✅ Sends the cookie in response headers
-            .body("Login Successfully");
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString()) // ✅ Sends the cookie in response headers
+                .body(token);
     }
 
     @PostMapping("/logout")
