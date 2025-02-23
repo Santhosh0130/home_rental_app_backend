@@ -67,7 +67,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // configuration.addAllowedOrigin("http://localhost:5173");
         // // configuration.setAllowedOrigins(orgins);
-        configuration.addAllowedOrigin("https://home-rental-app.onrender.com");
+        configuration.addAllowedOrigin("https://home-rental-app-frontend.onrender.com");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
