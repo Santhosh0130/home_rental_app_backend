@@ -53,19 +53,34 @@ public class UserController {
             System.out.println("Authentication failed: " + e.getMessage()); // Handle exception
         }
 
-        String token = jwtUtill.genarateToken(authentication.getName());
+        // String token = jwtUtill.genarateToken(authentication.getName());
+        
+        // ResponseCookie cookie = ResponseCookie.from("jwt", token)
+        //         .httpOnly(false)
+        //         .secure(true)
+        //         .path("/")
+        //         .maxAge(60 * 60 * 30)
+        //         .sameSite("None")
+        //         .build();
 
-        ResponseCookie cookie = ResponseCookie.from("jwt", token)
-                .httpOnly(false)
-                .secure(true)
-                .path("/")
-                .maxAge(60 * 60 * 30)
-                .sameSite("None")
-                .build();
+        // return ResponseEntity.ok()
+        //         .header("Set-Cookie", cookie.toString())
+        //         .body("Login Successfully. Token : " + token + " " + cookie.toString());
 
-        return ResponseEntity.ok()
-                .header("Set-Cookie", cookie.toString())
-                .body("Login Successfully. Token : " + token + " " + cookie.toString());
+        String token = jwtUtill.generateToken(authentication.getName());
+
+    // Create secure cookie for the token
+    ResponseCookie cookie = ResponseCookie.from("jwt", token)
+            .httpOnly(true)  // ✅ Prevents JavaScript access (More Secure)
+            .secure(true)    // ✅ Ensures cookie is only sent over HTTPS
+            .sameSite("None") // ✅ Required for cross-origin requests
+            .path("/")       // ✅ Makes the cookie available for all endpoints
+            .maxAge(60 * 60 * 30) // ✅ Cookie expires in 30 hours
+            .build();
+
+    return ResponseEntity.ok()
+            .header("Set-Cookie", cookie.toString()) // ✅ Sends the cookie in response headers
+            .body("Login Successfully");
     }
 
     @PostMapping("/logout")

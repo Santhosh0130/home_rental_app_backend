@@ -3,7 +3,6 @@ package com.example.home_rental_app1.modules;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.home_rental_app1.dto.Address;

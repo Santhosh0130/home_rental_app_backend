@@ -24,7 +24,7 @@ public class JwtUtill {
     
     private final String SECRET_KEY = "WiPips+3Zu/u/KCQRy5sbiw2VN9+i8vjr0r4HKqRiNI=";
 
-    public String genarateToken(String username) {
+    public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts
                 .builder()
