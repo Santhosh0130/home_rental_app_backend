@@ -1,14 +1,16 @@
-# Stage 1: Build the JAR file
-FROM maven:3.8.5-openjdk-17 AS build
+# Use Maven with JDK 21
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
-# Copy the project files and build
+# Copy project files
 COPY . .
+
+# Build the JAR file
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the application using a lightweight JDK image
-FROM openjdk:17-jdk-slim
+# Use a lightweight JDK 21 image for running the app
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
