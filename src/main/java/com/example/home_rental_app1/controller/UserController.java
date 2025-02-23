@@ -72,7 +72,7 @@ public class UserController {
 
         // Create secure cookie for the token
         ResponseCookie cookie = ResponseCookie.from("jwt", token)
-                .httpOnly(true) // ✅ Prevents JavaScript access (More Secure)
+                .httpOnly(false) // ✅ Prevents JavaScript access (More Secure)
                 .secure(true) // ✅ Ensures cookie is only sent over HTTPS
                 .sameSite("None") // ✅ Required for cross-origin requests
                 .path("/") // ✅ Makes the cookie available for all endpoints
