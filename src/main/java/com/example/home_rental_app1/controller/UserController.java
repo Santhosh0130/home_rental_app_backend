@@ -76,14 +76,18 @@ public class UserController {
         ResponseCookie cookie = ResponseCookie.from("jwt", token)
                 .httpOnly(false) // ✅ Prevents JavaScript access (More Secure)
                 .secure(true) // ✅ Ensures cookie is only sent over HTTPS
-                .sameSite("None") // ✅ Required for cross-origin requests
                 .path("/") // ✅ Makes the cookie available for all endpoints
                 .maxAge(60 * 60 * 30) // ✅ Cookie expires in 30 hours
+                .sameSite("None") // ✅ Required for cross-origin requests
                 .build();
 
-                response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+                // response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-                return ResponseEntity.ok("Login successful");
+                // return ResponseEntity.ok("Login successful");
+
+                return ResponseEntity.ok()
+        .header("Set-Cookie", cookie.toString())
+        .body("Login Successfully. Token : " + token + " " + cookie.toString());
     }
 
     @PostMapping("/logout")
