@@ -23,6 +23,8 @@ import com.example.home_rental_app1.dto.Register;
 import com.example.home_rental_app1.jwtConfig.JwtUtill;
 import com.example.home_rental_app1.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/auth")
@@ -43,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Login details) throws Exception {
+    public ResponseEntity<String> login(@RequestBody Login details, HttpServletResponse response) throws Exception {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(details.getUsername(), details.getPassword()));
@@ -79,9 +81,9 @@ public class UserController {
                 .maxAge(60 * 60 * 30) // ✅ Cookie expires in 30 hours
                 .build();
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, cookie.toString()) // ✅ Sends the cookie in response headers
-                .body(token);
+                response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+                return ResponseEntity.ok("Login successful");
     }
 
     @PostMapping("/logout")
