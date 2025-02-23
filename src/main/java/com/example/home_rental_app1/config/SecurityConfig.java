@@ -83,7 +83,8 @@ public class SecurityConfig {
     public CorsConfigurationSource configurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-            "https://home-rental-app-frontend.onrender.com",
+            // "https://home-rental-app-frontend.onrender.com",
+            "https://homerentalappfrontend.onrender.com",
             "https://home-rental-app-frontend.vercel.app"
         ));
         config.setAllowedMethods(List.of("*"));
