@@ -87,7 +87,7 @@ public class UserController {
 
                 return ResponseEntity.ok()
         .header("Set-Cookie", cookie.toString())
-        .body("Login Successfully. Token : " + token + " " + cookie.toString());
+        .body(token);
     }
 
     @PostMapping("/logout")
