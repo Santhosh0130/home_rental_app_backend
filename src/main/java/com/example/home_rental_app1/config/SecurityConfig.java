@@ -86,8 +86,10 @@ public class SecurityConfig {
         // config.setAllowedOriginPatterns(List.of("*"));
         config.setAllowedOrigins(List.of(
             // "https://home-rental-app-frontend.onrender.com",
-            "https://homerentalappfrontend.onrender.com",
-            "https://home-rental-app-frontend.vercel.app"
+            "https://homerentalappfrontend.onrender.com/",
+            "https://home-rental-app-frontend.vercel.app/",
+            "https://home-rental-app-frontend-g2vcfclfd-santhoshs-projects-03bf8968.vercel.app/",
+            "https://home-rental-app-frontend-g2vcfclfd-santhoshs-projects-03bf8968.vercel.app/"
         ));
         config.setExposedHeaders(List.of(HttpHeaders.SET_COOKIE));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
